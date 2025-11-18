@@ -55,11 +55,12 @@ def generate_response (model_name, input_path, output_path, batch_size):
             outputs = base_model.generate(
                 **inputs,
                 do_sample=False,
-                max_new_tokens=650,
-                eos_token_id=tokenizer.eos_token_id,
-                pad_token_id=tokenizer.pad_token_id,
-                use_cache=True,
-                return_dict_in_generate=True,
+                max_new_tokens=700,
+                do_sample=False
+                #eos_token_id=tokenizer.eos_token_id,
+                #pad_token_id=tokenizer.pad_token_id,
+                #use_cache=True,
+                #return_dict_in_generate=True,
         )
             
         seqs = outputs.sequences  # [B, prompt+new]
