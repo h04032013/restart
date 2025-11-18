@@ -1,0 +1,16 @@
+openai_key
+train_error.err 
+train_output.out 
+gen_error.err
+gen_output.out
+__pycache__
+hgf_new/
+wandb/
+grads
+trainer_output
+scripts
+7_error.err
+7_output.out
+50_error.err
+50_output.out
+

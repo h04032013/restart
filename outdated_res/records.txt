@@ -1,0 +1,149 @@
+API - 5-1 (prompt only fed two answers, "are they mathematically equivalent") - 4.1-nano
+Total correct: 2750 / 4754
+Accuracy: 57.85%
+
+API -5-2 (Given the question: {problem}
+        Compare the following two math answers. Only respond "TRUE" if both answers are mathematically equivalent, otherwise return "FALSE") - 4.1-nano
+Total correct: 2771 / 4754
+Accuracy: 58.29%
+
+=================================================================================================================
+API - 5-2-3 (Given the question: {problem}
+        Compare the following two math answers. Only respond "TRUE" if both answers are correct, otherwise return "FALSE") - 4o-mini
+Total correct: 2368 / 4754
+Accuracy: 49.81%
+
+API - 5-2-4 ("Compare the following two answers to a math question. Only respond "TRUE" if both answers are equivalent, otherwise return "FALSE") - 4o-mini - 13541458
+Total correct: 2730 / 4754
+Accuracy: 57.43%
+
+API - 5/2 (Given the math problem:  {problem} Compare the following two answers. Only respond "TRUE" if both answers are equivalent and correct, otherwise return "FALSE") - 4o-mini
+55%
+
+=================================================================================================================================
+API - 5/5 (""Given the question: {problem}
+        Compare the following two math answers. Only respond "TRUE" if both answers are mathematically equivalent, otherwise return "FALSE"
+        Answer 1: {final_answer}
+        Answer 2: {correct_answer}) - 4.1 mini
+        (""First, break down this problem for grade school students. Then, clearly state the final numerical answer in a latex boxed environment which will be scored. \n\nProblem: {}\n")")
+Total correct: 2789 / 4754
+Accuracy: 58.67%
+        
+
+is_equiv (hendrycks eval) - "First, break down this problem for grade school students. Then, clearly state the final numerical answer in a latex boxed environment which will be scored. \n\nProblem: {}\n")"
+Total correct: 2670 / 4754
+Accuracy: 56.16%
+
+---------------------------------------------------------------------------
+is_equiv 5_8 - "(<|system|>You are providing insightful explanations to grade school students<|end|><|user|>First, break down this problem for grade school students. Then, clearly state the final numerical answer in a latex boxed environment which will be scored<|end|><|user|>{}<|end|><|assistant|><|end|><|assistant|>)"
+
+Total correct: 2931 / 4754
+Accuracy: 61.65%
+
+api_quiv 5_8 =  ("Given the question: {problem}
+        Compare the following two math answers. Only respond "TRUE" if both answers are mathematically equivalent, otherwise return "FALSE"
+        Answer 1: {final_answer}
+        Answer 2: {correct_answer}) - 4.1 mini")
+Total correct: 3028 / 4754
+Accuracy: 63.69%
+
+
+
+
+
+
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/netscratch/dam_lab/Lab/hdiaz/.conda/envs/ssenv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 128.00 MiB. GPU 0 has a total capacity of 39.38 GiB of which 88.12 MiB is free. Including non-PyTorch memory, this process has 39.29 GiB memory in use. Of the allocated memory 38.05 GiB is allocated by PyTorch, and 745.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+
+
+06/11/2025 ===============(""<|system|>You are providing insightful explanations to grade school students.<|end|><|user|>First, break down this problem for grade school students. Then, clearly state the final numerical answer in a latex boxed environment which will be scored. \n\nProblem: {}\n<|end|><|assistant|>")
+
+
+("Given the question: {problem}
+        Compare the following two math answers. Only respond "TRUE" if both answers are mathematically equivalent, otherwise return "FALSE"
+        Answer 1: {final_answer}
+        Answer 2: {correct_answer}) - 4.1 mini")
+
+
+ISEQUIv: Total correct: 2942 / 4754
+Accuracy: 61.88%
+
+API: Total correct: 3057 / 4754
+Accuracy: 64.30%
+==================
+06/16
+NotImplementedError: Loading a dataset cached in a LocalFileSystem is not supported.
+
+
+==================
+RuntimeError: The server socket has failed to listen on any local network address. port: 35899, useIpv6: 0, code: -98, name: EADDRINUSE, message: address already in use
+
+07/24===================
+ValueError: Target modules {'k_proj', 'out_proj', 'v_proj', 'q_proj'} not found in the base model. Please check the target modules and try again.
+
+07/31==============================
+/n/netscratch/dam_lab/Lab/hdiaz/ft_project/finetune_lora_lsm.py:140: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `GradientSavingTrainer.__init__`. Use `processing_class` instead.
+  trainer = GradientSavingTrainer(
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+
+  0%|          | 0/113 [00:00<?, ?it/s]/n/netscratch/dam_lab/Lab/hdiaz/.conda/envs/env6/lib/python3.12/site-packages/torch/utils/checkpoint.py:87: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+
+
+
+07/31====================================
+Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
+
+08/01=================================================
+
+  File "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/finetune_lora_lsm.py", line 120, in training_step
+    outputs = model(**inputs)
+        ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Loss does not require grad — check model setup.
+
+08/05=================================
+FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `GradientSavingTrainer.__init__`. Use `processing_class` instead.
+  trainer = GradientSavingTrainer(
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+
+  0%|          | 0/57 [00:00<?, ?it/s]`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+slurmstepd: error: *** JOB 28939490 ON holygpu8a19106 CANCELLED AT 2025-08-06T22:49:15 ***
+
+======================================08/11 fsdp sh and ft
+
+ 94%|█████████▍| 47/50 [00:05<00:00,  7.83it/s][A
+
+ 96%|█████████▌| 48/50 [00:05<00:00,  7.90it/s][A
+
+ 98%|█████████▊| 49/50 [00:05<00:00,  7.94it/s][A
+
+100%|██████████| 50/50 [00:06<00:00,  6.62it/s][A
+                                             
+
+                                               
+[A
+100%|██████████| 7/7 [01:40<00:00,  9.87s/it]
+
+100%|██████████| 50/50 [00:06<00:00,  6.62it/s][A
+
+                                               [A
+                                             
+
+100%|██████████| 7/7 [01:40<00:00,  9.87s/it]
+100%|██████████| 7/7 [01:40<00:00, 14.31s/it]
+
+09/16/2025============================================
+failed to get the Python codec of the filesystem encoding
+Python runtime state: core initialized
+LookupError: no codec search functions registered: can't find encoding
+
+Current thread 0x0000153c8e3d4740 (most recent call first):
+  <no Python frame>
