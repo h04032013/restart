@@ -20,7 +20,7 @@ cd /n/netscratch/dam_lab/Lab/hdiaz/ft_project
 module purge
 module load Mambaforge
 module load cuda cudnn
-mamba activate env9
+mamba activate env11
 
 # Run training
 python main.py

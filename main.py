@@ -16,13 +16,13 @@ if __name__ == '__main__':
    print("inside main")
    
    # main()
-   model_path = "/n/netscratch/dam_lab/Lab/hdiaz/hgf_hub/models--microsoft--Phi-4-mini-instruct"
-   input_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/MATH/MATH_test.json"
-   output_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/responses/baseline_1c/baseline.json"
-   #apiequiv_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/responses/7e5_mgn_checkpoints/checkpoint_8000/apiequiv_incorrect.json"
+   model_path = "microsoft/Phi-4-mini-instruct"
+   input_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/MATH/MATH_micro.json"
+   output_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/responses/baseline/pretrained_responses.json"
+   apiequiv_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/responses/baseline/pretrained_api_incorrect.json"
    api_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/openai_key"
-  # graded_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/responses/7e5_mgn_checkpoints/checkpoint_8000/ft_graded.json"
-   isquiv_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/responses/baseline_1c/baseline_incorrect.json"
+   graded_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/responses/baseline/pretrained_graded.json"
+   isquiv_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/responses/baseline/pretrained_equiv_incorrect.json"
    print("paths are set, about to start generate")
 
    generate_response(model_name=model_path, input_path=input_path, output_path=output_path, batch_size=8)
