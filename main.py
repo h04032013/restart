@@ -25,11 +25,11 @@ if __name__ == '__main__':
    isquiv_path = "/n/netscratch/dam_lab/Lab/hdiaz/ft_project/responses/baseline/pretrained_equiv_incorrect.json"
    print("paths are set, about to start generate")
 
-   generate_response(model_name=model_path, input_path=input_path, output_path=output_path, batch_size=8)
+   #generate_response(model_name=model_path, input_path=input_path, output_path=output_path, batch_size=8)
 
    print("about to start eval")
    eval_response(input_path=input_path, output_path=output_path, batch_size=8, mistake_path=isquiv_path)
-   print("evaluated using isequiv")
+   #print("evaluated using isequiv")
 
    #asyncio.run(evaluate_response(input_path=input_path, output_path=output_path, batch_size=8, mistake_path=apiequiv_path))
   # print("gen, accuracy evals done, starting grading")

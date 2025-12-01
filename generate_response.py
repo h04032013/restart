@@ -4,10 +4,6 @@ import torch
 from tqdm import tqdm
 import regex as re
 
-# prompt_template = (
-#    "First, break down this problem for grade school students. Then, clearly state the final numerical answer in a latex boxed environment which will be scored. \n\nProblem: {}\n"
-# )
-
 prompt_template = ("<|system|>You are providing insightful explanations to grade school students.<|end|><|user|>First, break down this problem for grade school students. Then, clearly state only the final numerical answer in a latex boxed environment which will be scored. \n\nProblem: {}\n<|end|><|assistant|>")
 
 def extract_boxed_content(latex_str):
@@ -47,31 +43,27 @@ def generate_response (model_name, input_path, output_path, batch_size):
 
     for i in tqdm(range(0, len(problems), batch_size)):
         batch = problems[i:i+batch_size]
-        prompts = [prompt_template.format(entry["problem"], ) for entry in batch]
+        prompts = [prompt_template.format(entry["problem"]) for entry in batch]
         inputs = tokenizer(prompts, padding=True, return_tensors="pt").to(device)
 
         #print ("generating for: ", i)
         with torch.no_grad():
             outputs = base_model.generate(
-                **inputs,
-                do_sample=False,
-                max_new_tokens=700,
-                do_sample=False
-                #eos_token_id=tokenizer.eos_token_id,
-                #pad_token_id=tokenizer.pad_token_id,
-                #use_cache=True,
-                #return_dict_in_generate=True,
-        )
-            
-        seqs = outputs.sequences  # [B, prompt+new]
-        prompt_lens = inputs["attention_mask"].sum(dim=1).tolist()
-        for j in range(seqs.size(0)):
-            cut = int(prompt_lens[j])              # <-- make it a Python int
-            output_ids = seqs[j, cut:]             # exact new tokens only
-            response_text = tokenizer.decode(output_ids, skip_special_tokens=True).strip()
+            **inputs,
+            max_new_tokens=700,
+            do_sample=False,
+            use_cache=True,
+           # return_dict_in_generate=True,
+            )
+
+        for j, output_ids in enumerate(outputs):
+            output_text = tokenizer.decode(output_ids, skip_special_tokens=True)   
+            prompt_len=len(prompts[j])          # exact new tokens only
+            response_text = output_text
+            #response_text = response_text[len(prompts[j]):].strip()
 
             final_answer = extract_boxed_content(response_text)
-        
+
             results.append({
                 "problem":batch[j]["problem"],
                 "level": batch[j]["level"],
