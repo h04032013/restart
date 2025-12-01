@@ -13,4 +13,9 @@ scripts
 7_output.out
 50_error.err
 50_output.out
+genb_output.out
+genb_error.err
+genc_output.out
+genc_error.err
+
 
