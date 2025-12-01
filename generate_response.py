@@ -56,11 +56,10 @@ def generate_response (model_name, input_path, output_path, batch_size):
            # return_dict_in_generate=True,
             )
 
-        for j, output_ids in enumerate(outputs):
-            output_text = tokenizer.decode(output_ids, skip_special_tokens=True)   
-            prompt_len=len(prompts[j])          # exact new tokens only
-            response_text = output_text
-            #response_text = response_text[len(prompts[j]):].strip()
+        input_seq_len = inputs["input_ids"].shape[1]
+        for j in range(len(batch)):
+            generated_ids = outputs[j][input_seq_len:]
+            response_text = tokenizer.decode(generated_ids, skip_special_tokens=True).strip()
 
             final_answer = extract_boxed_content(response_text)
 
