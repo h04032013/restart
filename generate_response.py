@@ -4,7 +4,8 @@ import torch
 from tqdm import tqdm
 import regex as re
 
-prompt_template = ("<|system|>You are providing insightful explanations to grade school students.<|end|><|user|>First, break down this problem for grade school students. Then, clearly state only the final numerical answer in a latex boxed environment which will be scored. \n\nProblem: {}\n<|end|><|assistant|>")
+#prompt_template = ("<|system|>Solve problems step by step and provide insightful explanations.<|end|><|user|> Explain the following math problem to a grade school student. Finally, on the last line, #provide only the final answer in a latex boxed environment. Problem: {} \n<|end|><|assistant|>")
+
 
 def extract_boxed_content(latex_str):
     final_answer = []
@@ -28,13 +29,16 @@ def extract_boxed_content(latex_str):
     return final_answer[0] if final_answer else None
 
 def generate_response (model_name, input_path, output_path, batch_size):
+
+    
+    prompt_template = ("<|system|>You are providing insightful explanations to grade school students.<|end|><|user|>First, break down this problem for grade school students. Then, clearly state the final numerical answer in a latex boxed environment which will be scored. \n\nProblem: {}\n<|end|><|assistant|>")
     
     with open(input_path, "r") as f:
         problems = json.load(f)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    base_model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=False)
-    tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side='left',trust_remote_code=False)
+    base_model = AutoModelForCausalLM.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side='left')
     tokenizer.pad_token = tokenizer.eos_token
     base_model.to(device)
     base_model.eval()
@@ -50,7 +54,7 @@ def generate_response (model_name, input_path, output_path, batch_size):
         with torch.no_grad():
             outputs = base_model.generate(
             **inputs,
-            max_new_tokens=700,
+            max_new_tokens=1024,
             do_sample=False,
             use_cache=True,
            # return_dict_in_generate=True,

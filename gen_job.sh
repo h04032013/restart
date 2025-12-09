@@ -6,7 +6,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=4
 #SBATCH --gpus-per-node=1
-#SBATCH --time=0-24:00:00
+#SBATCH --time=0-00:15:00
 #SBATCH --mem=128G
 #SBATCH --output=genb_output.out
 #SBATCH --error=genb_error.err
